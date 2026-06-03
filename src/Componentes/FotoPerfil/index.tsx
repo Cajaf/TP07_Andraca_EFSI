@@ -1,7 +1,10 @@
-const FotoPerfil = ({foto}: FotoPerfilProps) =>{
+import type { typePerfil } from "../../types"
+import './fotoPerfil.css'
+
+const FotoPerfil:React.FC<typePerfil> = ({nombre,foto}) =>{
      return(
         <>
-        <img src={foto}/>
+        <img src={foto} className="foto-perfil-img"/>
         </>
      )
 }

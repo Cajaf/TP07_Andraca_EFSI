@@ -1,0 +1,42 @@
+section {
+  display: flex;
+  flex-direction: column;   /* ítems en columna */
+  align-items: flex-start;  /* alineados a la izquierda */
+  width: 220px;             /* ancho fijo del sidebar */
+  padding: 20px;
+  height: 100vh;            /* ocupa toda la altura */
+  background-color: #fff;   /* fondo blanco */
+}
+
+section > img {
+  width: 200px;
+  height: auto;        /* mantiene proporción */
+  margin-bottom: 30px;
+}
+section div {
+  display: flex;
+  align-items: center;      /* ícono y texto alineados */
+  gap: 12px;                /* espacio entre ícono y texto */
+  margin: 10px 0;
+  cursor: pointer;          /* cursor tipo mano */
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+section div:hover {
+  background-color: #f2f2f2; /* efecto hover */
+}
+
+section div img {
+  width: 24px;              /* tamaño de íconos */
+  height: 24px;
+}
+
+section div h2 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/*me ayude de de la ia para este css
