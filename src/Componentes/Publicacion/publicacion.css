@@ -1,6 +1,41 @@
-.head{
-  display: flex;
-  align-items: center;
+.publicacion {
+  width: 50%;              /* ancho fijo como en Instagram */
+  border-radius: 8px;        /* esquinas redondeadas */
+  background-color: #fff;    /* fondo blanco */
+  margin-left: 15%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
 }
 
-/*usando los otros css cree este
+.publicacion-head {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.publicacion-head h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.publicacion-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.publicacion-likes {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.publicacion-comentario {
+  padding: 0 10px 10px 10px;
+  font-size: 13px;
+}
+
+/* me ayude con la ia para hacer este css cambie todo lo que no me gustaba

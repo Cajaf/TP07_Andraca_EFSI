@@ -8,49 +8,50 @@ import likeIcon from "../fotos/like.png"
 import createIcon from "../fotos/create.png"
 import moreIcon from "../fotos/More.png"
 import './SideBar.css'
+import FotoPerfil from "../Componentes/FotoPerfil"
 
-const SideBar = () => {
+const SideBar = ({usuarioSesion}) => {
   return (
-    <section>
-      <h1>Instagram</h1>
+    <div className="sidebar">
+      <img src={instagramLogo} alt="Instagram" className="sidebar-logo" />
 
-      <div>
+      <div className="sidebar-item">
         <img src={homeIcon} alt="Home" />
         <h2>Home</h2>
       </div>
-      <div>
+      <div className="sidebar-item">
         <img src={searchIcon} alt="Search" />
         <h2>Search</h2>
       </div>
-      <div>
+      <div className="sidebar-item">
         <img src={exploreIcon} alt="Explore" />
         <h2>Explore</h2>
       </div>
-      <div>
+      <div className="sidebar-item">
         <img src={reelsIcon} alt="Reels" />
         <h2>Reels</h2>
       </div>
-      <div>
+      <div className="sidebar-item">
         <img src={messagesIcon} alt="Messages" />
         <h2>Messages</h2>
       </div>
-      <div>
+      <div className="sidebar-item">
         <img src={likeIcon} alt="Notifications" />
         <h2>Notifications</h2>
       </div>
-      <div>
+      <div className="sidebar-item">
         <img src={createIcon} alt="Create" />
         <h2>Create</h2>
       </div>
-      <div>
-        <img src="" alt="Profile" />
+      <div className="sidebar-profile">
+        <FotoPerfil foto={usuarioSesion.foto} nombre={usuarioSesion.nombre} />
         <h2>Profile</h2>
       </div>
-      <div>
+      <div className="sidebar-item">
         <img src={moreIcon} alt="More" />
         <h2>More</h2>
       </div>
-    </section>
+    </div>
   )
 }
 

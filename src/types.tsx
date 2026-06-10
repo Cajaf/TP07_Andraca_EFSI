@@ -20,4 +20,8 @@ export interface FotoPerfilProps {
   perfiles: typePerfil[]
 }
 
+export interface typeCatImage{
+  id: string;
+  url: string;
+};
 /* le pedi a la ia que me cree un ejemplo de interface y de ahi cree las mias*/

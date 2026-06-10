@@ -1,12 +1,39 @@
-import { useState } from 'react'
+
 import './App.css'
-import type { typeComentario, typePerfil, typePublicacion } from './types';
 import SideBar from './SideBar';
 import Publicacion from './Componentes/Publicacion';
 import Perfiles from './Componentes/Perfiles';
+import { useEffect, useState } from 'react';
+import type { typeCatImage, typePerfil } from './types';
+import axios from 'axios';
+
 
 function App() {
   
+  const [cats, setCats] = useState<typeCatImage[]>([]);
+
+  useEffect(() => {
+    const fetchCats = async () => {
+      try {
+        const response = await axios.get("https://api.thecatapi.com/v1/images/search", {
+          headers: {
+            "x-api-key": "live_ZtQBVqgO3tQ6htJwAQ8VqMxkzM0D5tVRF0be6lkTr7S5vGdzdc3YEQZtPdZpbgMB" 
+          },
+          params: {
+            limit: 10
+          }
+        });
+        setCats(response.data);
+      } catch (error) {
+        console.error("Error al traer gatos:", error);
+      }
+    };
+
+    fetchCats();
+  }, []);
+
+  //me ayude con la ia para hacer la llamada a la api
+
     const perfiles = [
     { nombre: "Felipe", foto: "" },
     { nombre: "Ana", foto: "" },
@@ -19,7 +46,7 @@ function App() {
     { nombre: "Jorge", foto: "" },
     { nombre: "Valentina", foto: "" },
   ];
-
+const [usuario, setUsuario] = useState<typePerfil>(perfiles[0])
   // 20 comentarios
   const comentarios = [
     { nombre: "Felipe", comentario: "¡Qué buena foto!" },
@@ -45,29 +72,35 @@ function App() {
   ];
 
   // 10 publicaciones
-  const publicaciones = [
-    { perfil: perfiles[0], foto: "", likes: 12, comentarios: [comentarios[2], comentarios[4]] },
-    { perfil: perfiles[1], foto: "", likes: 8, comentarios: [comentarios[1]] },
-    { perfil: perfiles[2], foto: "", likes: 15, comentarios: [comentarios[5], comentarios[0]] },
-    { perfil: perfiles[3], foto: "", likes: 20, comentarios: [comentarios[10]] },
-    { perfil: perfiles[4], foto: "", likes: 5, comentarios: [comentarios[1], comentarios[2]] },
-    { perfil: perfiles[5], foto: "", likes: 9, comentarios: [comentarios[11]] },
-    { perfil: perfiles[6], foto: "", likes: 13, comentarios: [comentarios[12], comentarios[13]] },
-    { perfil: perfiles[7], foto: "", likes: 7, comentarios: [comentarios[14]] },
-    { perfil: perfiles[8], foto: "", likes: 11, comentarios: [comentarios[9], comentarios[8]] },
-    { perfil: perfiles[9], foto: "", likes: 18, comentarios: [comentarios[3], comentarios[5]] },
-  ];
+  const [publicaciones, setPublicaciones] = useState([])
+
+  useEffect(() => {
+  if (cats.length >= 10) {
+    setPublicaciones([
+    { perfil: perfiles[0], foto: cats[0].url, likes: 12, comentarios: [comentarios[2], comentarios[4]] },
+    { perfil: perfiles[1], foto: cats[1].url, likes: 8, comentarios: [comentarios[1]] },
+    { perfil: perfiles[2], foto: cats[2].url, likes: 15, comentarios: [comentarios[5], comentarios[0]] },
+    { perfil: perfiles[3], foto: cats[3].url, likes: 20, comentarios: [comentarios[10]] },
+    { perfil: perfiles[4], foto: cats[4].url, likes: 5, comentarios: [comentarios[1], comentarios[2]] },
+    { perfil: perfiles[5], foto: cats[5].url, likes: 9, comentarios: [comentarios[11]] },
+    { perfil: perfiles[6], foto: cats[6].url, likes: 13, comentarios: [comentarios[12], comentarios[13]] },
+    { perfil: perfiles[7], foto: cats[7].url, likes: 7, comentarios: [comentarios[14]] },
+    { perfil: perfiles[8], foto: cats[8].url, likes: 11, comentarios: [comentarios[9], comentarios[8]] },
+    { perfil: perfiles[9], foto: cats[9].url, likes: 18, comentarios: [comentarios[3], comentarios[5]] },
+    ]);
+  }
+}, [cats]);
 
   // Los datos se los pedi a la ia
   return (
     <section className="app-container">
       
     <div className="sidebar">
-      <SideBar/>
+      <SideBar usuarioSesion={usuario}/>
     </div>
       <section className="main-content">
         
-        <Perfiles perfiles={perfiles}/>
+        <Perfiles perfiles={perfiles.slice(1, 7)} />
           {publicaciones.map(item => <Publicacion perfil={item.perfil} foto={item.foto} likes={item.likes} comentarios={item.comentarios}/>)}
       </section>
     </section>
