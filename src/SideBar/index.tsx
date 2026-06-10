@@ -9,6 +9,7 @@ import createIcon from "../fotos/create.png"
 import moreIcon from "../fotos/More.png"
 import './SideBar.css'
 import FotoPerfil from "../Componentes/FotoPerfil"
+import { Link } from "react-router-dom"
 
 const SideBar = ({usuarioSesion}) => {
   return (
@@ -43,10 +44,12 @@ const SideBar = ({usuarioSesion}) => {
         <img src={createIcon} alt="Create" />
         <h2>Create</h2>
       </div>
+      <Link to="/perfil">
       <div className="sidebar-profile">
         <FotoPerfil foto={usuarioSesion.foto} nombre={usuarioSesion.nombre} />
         <h2>Profile</h2>
       </div>
+      </Link>
       <div className="sidebar-item">
         <img src={moreIcon} alt="More" />
         <h2>More</h2>
